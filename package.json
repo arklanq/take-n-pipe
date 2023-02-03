@@ -30,10 +30,6 @@
       "import": "./dist/esm/src/index.js"
     }
   },
-  "engines": {
-    "node": ">=18",
-    "yarn": ">=1.22"
-  },
   "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.1",
