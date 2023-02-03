@@ -1,5 +1,5 @@
 
-# pipe 'n take
+# take 'n pipe
 
 Simple tool to seamlessly chain code execution.
 
@@ -13,10 +13,10 @@ Simple tool to seamlessly chain code execution.
 
 ## Features
 
-- Ridiculously simple.
-- Sync & async context.
-- Supports both CJS & ESM standards.
-- Full TypeScript support.
+- Ridiculously simple 😝
+- Sync & async context ⚙️
+- Supports both CJS & ESM standards 🥂 
+- Full TypeScript support 📘
 
 
 ## Installation
