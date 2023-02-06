@@ -20,8 +20,10 @@
 /rollup
 /assets
 /README.md
-/.prettierrc.json
+/.prettierrc.cjs
 /.prettierignore
 /.eslintrc.cjs
+/.eslintignore
+/jest.config.js
 /.nvmrc
 /tsconfig.json
