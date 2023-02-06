@@ -9,14 +9,19 @@ export class Pipe<V> {
     return new Pipe(callback(this.value));
   }
 
-  pipeAsync<R>(callback: (value: Awaited<V>) => R): R extends Promise<infer P> ? Pipe<Promise<P>> : Pipe<Promise<R>> {
+  pipeAsync<R, P>(callback: (value: Awaited<V>) => R): R extends Promise<infer P> ? Pipe<Promise<P>> : Pipe<Promise<R>> {
     // Workaround for https://github.com/microsoft/TypeScript/issues/33912
     type ReturnType = R extends Promise<infer P> ? Pipe<Promise<P>> : Pipe<Promise<R>>;
 
-    if (this.value instanceof Promise) {
+    if(this.value instanceof Promise) {
       return new Pipe(this.value.then((awaitedValue: Awaited<V>): R => callback(awaitedValue))) as ReturnType;
     } else {
-      return new Pipe(Promise.resolve(callback(this.value as Awaited<V>))) as ReturnType;
+      const returnValue: unknown = callback(this.value as Awaited<V>);
+
+      if(returnValue instanceof Promise)
+        return new Pipe(returnValue) as ReturnType;
+      else
+        return new Pipe(Promise.resolve(returnValue)) as ReturnType;
     }
   }
 
