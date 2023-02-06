@@ -1,23 +1,19 @@
-
 # take 'n pipe
 
 Simple tool to seamlessly chain code execution.
 
-
-
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
 
 ![App Screenshot](./assets/screenshot.png)
 
-
 ## Features
 
-- Ridiculously simple 😝
-- Sync & async context ⚙️
-- Supports both CJS & ESM standards 🥂 
-- Full TypeScript support 📘
-
+- 😝 Ridiculously simple.
+- ⚙️ Sync & async context.
+- 📦 Distributions in ESM and CommonJS standards.
+- 📘 Full TypeScript support.
+- 🔋 Bateries included - no dependencies.
+- 🧪 Well tested with Jest.
 
 ## Installation
 
@@ -28,7 +24,7 @@ Simple tool to seamlessly chain code execution.
   # With Yarn
   yarn add take-n-pipe
 ```
-    
+
 ## Usage
 
 1. Take any input data.
@@ -52,7 +48,7 @@ take(data)
 ```
 
 > Note that if you are using asynchronous context you should await on the chain result.
-> 
+>
 > `await take(...).pipeAsync(...).get()`
 
 4. Obtain results.
@@ -60,6 +56,7 @@ take(data)
 ```
 .get()
 ```
+
 ## Full example
 
 ```ts
@@ -76,5 +73,7 @@ const response: SomeData = await take(process.env.SECRET_KEY)
 
 ## TODO
 
-- [ ] Write some tests.
+- [X] Write some tests.
 - [ ] Implement new `Pipe.catch(...)` method.
+- [ ] Allow merging two `Pipe`'s together somehow.
+- [ ] (Optionally) Setup CI/CD to look for TS, ESLint, Jest issues.
