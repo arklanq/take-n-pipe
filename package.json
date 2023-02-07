@@ -1,7 +1,7 @@
 {
   "name": "take-n-pipe",
   "description": "Simple tool to seamlessly chain code execution.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "homepage": "https://github.com/IdkMan2/take-n-pipe#pipe-n-take",
   "repository": "https://github.com/IdkMan2/take-n-pipe",
