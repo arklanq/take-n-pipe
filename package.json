@@ -11,7 +11,7 @@
     "ts-check": "tsc --project tsconfig.json --noEmit",
     "lint": "eslint \"./{src,tests}/**/*.ts\" --fix",
     "format": "prettier --loglevel warn --write \"{src,tests}/**/*.ts\"",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
     "clear-leavings": "rimraf *.tsbuildinfo *.eslintcache yarn-debug.log* yarn-error.log*"
   },
   "files": [
