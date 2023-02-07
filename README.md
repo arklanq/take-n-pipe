@@ -4,7 +4,7 @@ Simple tool to seamlessly chain code execution.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-![App Screenshot](./assets/screenshot.png)
+![Code sample](./assets/hero-image.png)
 
 ## Features
 
@@ -36,20 +36,14 @@ take(data)
 2. Transform data with the `pipe(...)` method.
 
 ```ts
-.pipe((data: object) => JSON.stringify(data))
+.pipe((data: object) => {...})
 ```
 
-3. \[Optionally] Jump to asynchronous context easily.
+3. [Optionally] Catch errors with `catch(...)` method.
 
 ```ts
-.pipeAsync(async (json: string) => {
-    return await server.send(json);
-})
+.catch((error: unknown) => {...})
 ```
-
-> Note that if you are using asynchronous context you should await on the chain result.
->
-> `await take(...).pipeAsync(...).get()`
 
 4. Obtain results.
 
@@ -57,23 +51,18 @@ take(data)
 .get()
 ```
 
-## Full example
+## Examples
 
-```ts
-const response: SomeData = await take(process.env.SECRET_KEY)
-  .pipe((secret: string | undefined) => secret ?? fallbackSecret)
-  .pipe((secret: string) => {
-    return new SomeComplicatedSDK(secret);
-  })
-  .pipeAsync(async (sdk: SomeComplicatedSDK) => {
-    return await sdk.contactServer();
-  })
-  .get();
-```
+<details>
+<summary>Simple, synchronous pipes</summary>
+
+https://github.com/IdkMan2/take-n-pipe/blob/2787121d24a90a57f47560c727849df37ab4d793/tests/examples/sync-pipes.ts#L1-L46
+</details>
 
 ## TODO
 
 - [X] Write some tests.
-- [ ] Implement new `Pipe.catch(...)` method.
+- [X] Implement new `Pipe.catch(...)` method.
 - [ ] Allow merging two `Pipe`'s together somehow.
 - [ ] (Optionally) Setup CI/CD to look for TS, ESLint, Jest issues.
+- [ ] Add real-world examples.

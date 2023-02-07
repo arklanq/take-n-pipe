@@ -31,6 +31,7 @@ const config = {
         sourceMap: true,
         sourceRoot: path.resolve(rootDirPath),
       },
+      include: ['src/**/*.ts'],
     }),
     // Allows Rollup to convert TypeScript to JavaScript
     // Emit .d.ts, .d.ts.map
@@ -42,6 +43,7 @@ const config = {
         declarationMap: true,
         emitDeclarationOnly: true,
       },
+      include: ['src/**/*.ts'],
     }),
     // Replace alias paths with relative paths after typescript compilation
     plugin_typescriptAlias({
