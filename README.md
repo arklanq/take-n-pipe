@@ -53,7 +53,11 @@ take(data)
 
 ## Examples
 
-// TO-DO
+<details>
+<summary>Simple, synchronous pipes</summary>
+
+https://github.com/IdkMan2/take-n-pipe/blob/2787121d24a90a57f47560c727849df37ab4d793/tests/examples/sync-pipes.ts#L1-L46
+</details>
 
 ## TODO
 
