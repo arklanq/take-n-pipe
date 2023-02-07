@@ -10,7 +10,7 @@ const countryDisplayNames: Map<string, string> = new Map([
 
 const inputData: string = 'AR';
 
-test('Example with static pipes', () => {
+test('Example: synchronous pipes', () => {
   // 1. Take country code as input
   const pipeOutput: string = take(inputData)
     // 2. Validate if it's valid, 2 letters ISO code
