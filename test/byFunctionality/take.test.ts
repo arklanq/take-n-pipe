@@ -22,11 +22,11 @@ test('`takeAsync(...)` function returns an instance of `AsyncPipe` class.', () =
   expect(takeAsync(promise)).toBeInstanceOf(AsyncPipe);
 });
 
-test('`takeAsync(value).toPromise()` should return Promise resolving with unchanged input value.', () => {
+test('`takeAsync(value).toPromise()` should return Promise resolving with unchanged input value.', async () => {
   const value: string = 'foo';
   const promise: Promise<string> = Promise.resolve(value);
   const output: Promise<string> = takeAsync(promise).toPromise();
 
   expect(output).toBeInstanceOf(Promise);
-  expect(output).resolves.toBe(value);
+  await expect(output).resolves.toBe(value);
 });

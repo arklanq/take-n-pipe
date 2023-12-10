@@ -1,3 +1,4 @@
+import {jest} from '@jest/globals';
 import {take} from 'take-n-pipe';
 
 interface CreateUserEvent {
@@ -7,11 +8,10 @@ interface CreateUserEvent {
 
 const inputData: unknown = {
   name: 'John Doe',
-  email: 'john.doe@example.com'
+  email: 'john.doe@example.com',
 };
 
-function log(..._input: unknown[]): void {
-}
+const log: (..._input: unknown[]) => void = jest.fn();
 
 class db {
   static createUser(_user: CreateUserEvent): Promise<string> {
@@ -30,13 +30,12 @@ test('Example: mixed pipes', async () => {
   const userId: string = await take(inputData)
     // 2. Validate data
     .pipe((event: unknown) => {
-      if(typeof event !== 'object' || event === null)
-        throw new Error('Invalid request event');
+      if (typeof event !== 'object' || event === null) throw new Error('Invalid request event');
 
-      if(!('name' in event) || typeof event.name !== 'string')
+      if (!('name' in event) || typeof event.name !== 'string')
         throw new Error('Event object is missing `name` field of type `string`');
 
-      if(!('email' in event) || typeof event.email !== 'string')
+      if (!('email' in event) || typeof event.email !== 'string')
         throw new Error('Event object is missing `email` field of type `string`');
 
       return event as CreateUserEvent;

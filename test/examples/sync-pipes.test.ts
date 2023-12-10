@@ -5,7 +5,7 @@ const countryDisplayNames: Map<string, string> = new Map([
   ['AL', 'Albania'],
   ['DZ', 'Algeria'],
   ['AS', 'American Samoa'],
-  ['AD', 'Andorra']
+  ['AD', 'Andorra'],
 ]);
 
 const inputData: string = 'AR';
@@ -15,16 +15,14 @@ test('Example: synchronous pipes', () => {
   const pipeOutput: string = take(inputData)
     // 2. Validate if it's valid, 2 letters ISO code
     .pipe((code: string) => {
-      if(!/^[A-Z]{2}$/.test(code))
-        throw new Error('Invalid country code');
-      else
-        return code;
+      if (!/^[A-Z]{2}$/.test(code)) throw new Error('Invalid country code');
+      else return code;
     })
     // 3. Map with country display name
     .pipe(countryDisplayNames.get.bind(countryDisplayNames))
     // 4. Throw error if display name for this country wasn't found
     .pipe((displayName: string | undefined) => {
-      if(!displayName) throw new Error('Display name not found.');
+      if (!displayName) throw new Error('Display name not found.');
       else return displayName;
     })
     /* 5. Catch errors, then:
@@ -32,8 +30,7 @@ test('Example: synchronous pipes', () => {
      *   - and replace it with 'Unknown country name' placeholder.
      */
     .catch((e: unknown) => {
-      if(e instanceof Error && e.message === 'Display name not found.')
-        return 'Unknown country name'; // placeholder
+      if (e instanceof Error && e.message === 'Display name not found.') return 'Unknown country name'; // placeholder
 
       throw e; // On the other hand - throw the error further
     })

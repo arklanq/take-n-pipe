@@ -22,17 +22,16 @@ test('`AsyncPipe.pipeAsync(...)` chain should return desired value.', async () =
 });
 
 test('`AsyncPipe` class instance is assignable to `Pipe` type.', () => {
-  // noinspection JSUnusedLocalSymbols
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const pipe: Pipe<string> = takeAsync(Promise.resolve('foo'));
 });
 
 test('Error can be catched with `AsyncPipe.catch(...)` method.', async () => {
   const ERR_MESSAGE = 'Response error';
-  const pipe: AsyncPipe<string> = takeAsync(Promise.resolve('error'))
-    .pipeAsync((response: string) => {
-      if(response === 'error') throw new Error(ERR_MESSAGE);
-      else return response;
-    });
+  const pipe: AsyncPipe<string> = takeAsync(Promise.resolve('error')).pipeAsync((response: string) => {
+    if (response === 'error') throw new Error(ERR_MESSAGE);
+    else return response;
+  });
   const errorHandler = jest.fn();
 
   const nextPipe: Pipe<unknown> = pipe.catchAsync(errorHandler);
@@ -44,6 +43,6 @@ test('Error can be catched with `AsyncPipe.catch(...)` method.', async () => {
   expect(fnCall.length).toEqual(1);
   expect(fnCall[0]).toBeInstanceOf(Error);
   expect(fnCall[0]).toMatchObject({
-    message: expect.stringMatching(ERR_MESSAGE)
+    message: expect.stringMatching(ERR_MESSAGE),
   });
 });
