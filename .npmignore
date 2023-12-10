@@ -10,20 +10,3 @@
 **/*.tsbuildinfo
 **/yarn-debug.log*
 **/yarn-error.log*
-
-# Project
-/node_modules
-/dist
-
-# Source code, configuration, assets, misc
-/src
-/rollup
-/assets
-/README.md
-/.prettierrc.cjs
-/.prettierignore
-/.eslintrc.cjs
-/.eslintignore
-/jest.config.js
-/.nvmrc
-/tsconfig.json
