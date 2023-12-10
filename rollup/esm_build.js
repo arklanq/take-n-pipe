@@ -5,6 +5,7 @@ import plugin_commonjs from '@rollup/plugin-commonjs';
 import plugin_nodeResolve from '@rollup/plugin-node-resolve';
 import plugin_typescript from '@rollup/plugin-typescript';
 import plugin_typescriptAlias from './rollup-plugin-typescript-alias.js';
+import plugin_generatePackageJson from 'rollup-plugin-generate-package-json';
 
 import {externalDependencies, rootDirPath} from './utils.js';
 
@@ -49,7 +50,13 @@ const config = {
     plugin_typescriptAlias({
       outDir: 'dist/esm',
       declarationDir: 'dist/esm',
-    })
+    }),
+    // Generate package.json
+    plugin_generatePackageJson({
+      baseContents: (_pkg) => ({
+        type: 'module'
+      })
+    }),
   ],
   external: externalDependencies,
   output: {

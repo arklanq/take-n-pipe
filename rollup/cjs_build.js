@@ -7,6 +7,7 @@ import plugin_typescript from '@rollup/plugin-typescript';
 import plugin_typescriptAlias from './rollup-plugin-typescript-alias.js';
 
 import {externalDependencies, rootDirPath} from './utils.js';
+import plugin_generatePackageJson from 'rollup-plugin-generate-package-json';
 
 // CJS build
 const config = {
@@ -50,6 +51,11 @@ const config = {
       outDir: 'dist/cjs',
       declarationDir: 'dist/cjs',
     }),
+    plugin_generatePackageJson({
+      baseContents: (_pkg) => ({
+        type: 'commonjs'
+      })
+    })
   ],
   external: externalDependencies,
   output: {
