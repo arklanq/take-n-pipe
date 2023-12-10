@@ -9,12 +9,14 @@
   "scripts": {
     "build": "rollup -c rollup/rollup.config.js",
     "ts-check": "tsc --project tsconfig.json --noEmit",
-    "lint": "eslint \"./{src,tests}/**/*.ts\" --fix",
+    "lint": "eslint \"./{src,test}/**/*.ts\" --fix",
     "format": "prettier --loglevel warn --write \"{src,tests}/**/*.ts\"",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
-    "clear-leavings": "rimraf *.tsbuildinfo *.eslintcache yarn-debug.log* yarn-error.log*"
+    "clean": "rimraf yarn-debug.log* yarn-error.log*",
+    "clear-cache": "rimraf node_modules/.cache *.tsbuildinfo *.eslintcache"
   },
   "files": [
+    "package.json",
     "dist",
     "README.md"
   ],
@@ -48,6 +50,7 @@
     "prettier": "^2.8.3",
     "rollup": "^3.12.1",
     "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-generate-package-json": "^3.2.0",
     "ts-jest": "^29.0.5",
     "ts-jest-resolver": "^2.0.0",
     "tsc-alias": "^1.8.2",
