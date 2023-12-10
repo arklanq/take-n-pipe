@@ -14,28 +14,27 @@ export class SyncPipe<V = void> {
   private runSafely<A, R>(callback: (value: A) => R, value: A): [R, unknown] | [undefined, unknown] {
     try {
       return [callback(value), undefined];
-    } catch(e: unknown) {
+    } catch (e: unknown) {
       this.error = e;
       return [undefined, e];
     }
   }
 
   pipe<R = void>(callback: (value: V) => R): SyncPipe<R> {
-    if(this.error) return new SyncPipe(undefined, this.error);
+    if (this.error) return new SyncPipe(undefined, this.error);
 
     const [nextValue, error] = this.runSafely(callback, this.value);
     return new SyncPipe(nextValue, error);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pipeAsync<R extends Promise<any> = Promise<void>>(callback: (value: V) => R): AsyncPipe<Awaited<R>> {
-    if(this.error)
-      return new AsyncPipe<Awaited<R>>(Promise.reject(this.error));
-    else
-      return new AsyncPipe<Awaited<R>>(callback(this.value));
+    if (this.error) return new AsyncPipe<Awaited<R>>(Promise.reject(this.error));
+    else return new AsyncPipe<Awaited<R>>(callback(this.value));
   }
 
   catch<R = void>(errorHandler: (e: unknown) => R): SyncPipe<V | R> {
-    if(this.error) {
+    if (this.error) {
       const [nextValue, error] = this.runSafely(errorHandler, this.error);
       try {
         return new SyncPipe(nextValue, error);
@@ -48,7 +47,7 @@ export class SyncPipe<V = void> {
   }
 
   get(): V {
-    if(this.error) throw this.error;
+    if (this.error) throw this.error;
     else return this.value;
   }
 }

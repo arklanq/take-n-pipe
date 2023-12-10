@@ -6,9 +6,7 @@ export class AsyncPipe<V = void> {
   }
 
   pipeAsync<R = void>(callback: (value: V) => R): AsyncPipe<Awaited<R>> {
-    return new AsyncPipe<Awaited<R>>(
-      this.promise.then(callback) as Promise<Awaited<R>>
-    );
+    return new AsyncPipe<Awaited<R>>(this.promise.then(callback) as Promise<Awaited<R>>);
   }
 
   catchAsync<R = void>(errorHandler: (e: unknown) => R): AsyncPipe<V | R> {
