@@ -1,13 +1,24 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 const config = {
-  roots: ['<rootDir>/src', '<rootDir>/tests'],
-  testMatch: ['**/?(*.)test.ts', '**/tests/**/*.ts'],
-  // testRegex: ['/src/.*.test.ts$', '/tests/.*.ts$'],
-  testPathIgnorePatterns: ['<rootDir>/src/.*.test.scratch.ts$', '<rootDir>/tests/.*.scratch.ts$'],
-  preset: 'ts-jest/presets/default-esm',
-  resolver: 'ts-jest-resolver',
+  /*
+   * General configuration
+   */
   testEnvironment: 'node',
+  moduleFileExtensions: ['ts', 'js'], // order matters
+  testRegex: '.*\\.test\\.ts$',
+  testMatch: null, // Must be set to null, see https://kulshekhar.github.io/ts-jest/docs/getting-started/presets
+  roots: ['<rootDir>/src', '<rootDir>/test'], // can be explicitly overriden by CLI option
+  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+  cacheDirectory: '<rootDir>/node_modules/.cache/jest',
+
+  /*
+   * ESM & TypeScript configuration
+   */
+  preset: 'ts-jest/presets/default-esm',
   extensionsToTreatAsEsm: ['.ts'],
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
   transform: {
     '^.+\\.ts$': [
       'ts-jest',
